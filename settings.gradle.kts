@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "BrochureCatalogue"
 include(":app")
- 
+include(":data")
+include(":domain")
