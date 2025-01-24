@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.android.data.local.model.LocalBrochure
+import com.android.data.model.local.LocalBrochure
 
 /**
  * Data Access Object (DAO) interface for managing `LocalBrochure` operations in the Room database.

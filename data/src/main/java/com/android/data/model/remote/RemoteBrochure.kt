@@ -1,4 +1,4 @@
-package com.android.data.network.model
+package com.android.data.model.remote
 
 import com.android.data.utils.Constants.EMBEDDED
 import com.google.gson.annotations.SerializedName
