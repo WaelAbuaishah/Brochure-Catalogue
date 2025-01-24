@@ -15,8 +15,9 @@ import com.android.data.utils.Source
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class BrochureRepositoryImpl(
+class BrochureRepositoryImpl @Inject constructor(
     private val brochureDao: BrochureDao,
     private val apiService: ApiService
 ) : BrochureRepository {

@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+    // TODO: Replace the module name with a constant source
+    implementation(project(":data"))
 
     // Hilt
     implementation(libs.hilt.android)
