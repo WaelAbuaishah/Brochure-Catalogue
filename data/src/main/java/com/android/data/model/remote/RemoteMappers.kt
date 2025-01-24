@@ -4,6 +4,7 @@ import com.android.data.model.domain.Brochure
 import com.android.data.model.domain.ContentType
 import com.android.data.model.domain.Publisher
 import com.android.data.model.local.LocalBrochure
+import com.android.data.utils.Constants.UNKNOWN_BROCHURE_TYPE
 
 fun RemoteBrochure.toDomain(): Brochure? {
     val type = when (contentType) {
@@ -36,7 +37,7 @@ fun RemoteBrochure.toLocal(): LocalBrochure {
     return LocalBrochure(
         id = id,
         title = title,
-        contentType = contentType ?: "unknown",
+        contentType = contentType ?: UNKNOWN_BROCHURE_TYPE,
         brochureImage = brochureImage,
         publisherId = publisher?.id.orEmpty(),
         publisherName = publisher?.name,
