@@ -22,8 +22,6 @@ squareup = "4.11.0"
 mockk = "1.13.2"
 coroutines-test = "1.7.3"
 turbine = "0.12.1"
-assertj = "3.24.2"
-androidxTest = "1.5.0"
 coreKtxVersion = "1.6.1"
 robolectric = "4.10.3"
 mockwebserver = "4.11.0"
@@ -50,7 +48,6 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation = {group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt_nav"}
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "squareup" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
