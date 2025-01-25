@@ -61,7 +61,8 @@ class BrochureRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(Failure(e, Source.REMOTE))
         }
-    }.catch { e ->
-        emit(Failure(Exception(e), Source.LOCAL))
+    }.catch { throwable ->
+        val exception = if (throwable is Exception) throwable else Exception(throwable)
+        emit(Failure(exception, Source.LOCAL))
     }
 }
