@@ -26,7 +26,6 @@ import com.android.data.utils.Source
 @Composable
 fun BrochuresListScreen(modifier: Modifier = Modifier, viewModel: BrochureViewModel) {
     val uiState by viewModel.uiState.collectAsState()
-    // TODO: Think again about uiState and the recomposition behaivour, maybe it worth it to do some changes on them
     val configuration = LocalConfiguration.current
     LaunchedEffect(configuration.orientation) {
         viewModel.updateColumnsBasedOnOrientation(configuration.orientation)

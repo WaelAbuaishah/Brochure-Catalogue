@@ -25,10 +25,11 @@ import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.android.data.model.domain.Brochure
 
+const val CELL_RATIO = 0.67f
+
 @Composable
 fun BrochureItem(brochure: Brochure, modifier: Modifier = Modifier) {
 
-    // TODO: To move all values to be from constants
     Column(
         modifier = modifier
             .padding(12.dp)
@@ -49,7 +50,7 @@ fun BrochureItem(brochure: Brochure, modifier: Modifier = Modifier) {
             brochure.brochureImage?.let {
                 Box(
                     modifier = Modifier
-                        .aspectRatio(0.67f)
+                        .aspectRatio(CELL_RATIO)
                         .clip(RoundedCornerShape(12.dp))
                         .background(MaterialTheme.colorScheme.onBackground)
                 ) {

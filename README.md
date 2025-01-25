@@ -15,6 +15,7 @@ Welcome to **Brochure Catalogue**, an Android application built with modern deve
 
 - 📦 **Centralized Dependency Management**:
     - Dependencies are organized using **Gradle Catalogs** for easy maintenance.
+- Detekt rules have been added to the project, and the codebase is configured to respect them during static analysis.
 
 ---
 
