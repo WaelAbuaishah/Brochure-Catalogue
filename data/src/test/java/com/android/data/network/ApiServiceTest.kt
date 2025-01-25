@@ -1,7 +1,5 @@
 package com.android.data.network
 
-import com.android.data.model.remote.BrochureApiResponse
-import com.android.data.model.remote.EmbeddedBrochures
 import com.android.data.model.remote.RemotePlacement
 import com.android.data.model.remote.UnParsableRemotePlacement
 import com.android.data.utils.Constants
@@ -13,7 +11,10 @@ import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertThrows
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
@@ -56,7 +57,7 @@ class ApiServiceTest {
     }
 
     @Test
-    @Ignore("This test is temporarily disabled due to a known issue (should be added to technical dept reference)")
+    @Ignore("This test is temporarily disabled due to an issue with reading the string issue (should be added to technical dept reference)")
     fun `getBrochures returns expected data`() = runTest {
         // Arrange
         val mockResponse = """
@@ -99,52 +100,6 @@ class ApiServiceTest {
         assertEquals("brochure", response.embedded.contents[0].contentType)
         assertEquals("Publisher1", response.embedded.contents[0].content?.publisher?.name)
     }
-
-
-    /*
-        @Test
-        fun `getBrochures returns expected data`() = runTest {
-            // Arrange
-            val mockResponse = """
-            {
-                "_embedded": {
-                    "contents": [
-                        {
-                            "contentType": "${Constants.BROCHURE_TYPE}",
-                            "content": {
-                                "id": 1,
-                                "brochureImage": "image1.png",
-                                "publisher": { "id": "1", "name": "Publisher1" },
-                                "contentType": "${Constants.BROCHURE_TYPE}",
-                                "distance": 1.2
-                            }
-                        },
-                        {
-                            "contentType": "${Constants.BROCHURE_PREMIUM_TYPE}",
-                            "content": {
-                                "id": 2,
-                                "brochureImage": "image2.png",
-                                "publisher": { "id": "2", "name": "Publisher2" },
-                                "contentType": "${Constants.BROCHURE_PREMIUM_TYPE}",
-                                "distance": 2.3
-                            }
-                        }
-                    ]
-                }
-            }
-            """
-            mockWebServer.enqueue(MockResponse().setBody(mockResponse).setResponseCode(200))
-
-            // Act
-            val response = apiService.getBrochures()
-
-            // Assert
-            assertNotNull(response.embedded)
-            assertEquals(2, response.embedded.contents.size)
-            assertEquals(Constants.BROCHURE_TYPE, response.embedded.contents[0].contentType)
-            assertEquals("Publisher1", response.embedded.contents[0].content?.publisher?.name)
-        }
-    */
 
     @Test
     fun `getBrochures handles malformed data gracefully`() = runTest {
@@ -216,8 +171,9 @@ class ApiServiceTest {
         {
             "_embedded": {
                 "contents": [
-                    ${List(1000) {
-            """{
+                    ${
+            List(1000) {
+                """{
                             "contentType": "${Constants.BROCHURE_TYPE}",
                             "content": {
                                 "id": $it,
@@ -227,7 +183,8 @@ class ApiServiceTest {
                                 "distance": $it.0
                             }
                         }"""
-        }.joinToString(",")}
+            }.joinToString(",")
+        }
                 ]
             }
         }
