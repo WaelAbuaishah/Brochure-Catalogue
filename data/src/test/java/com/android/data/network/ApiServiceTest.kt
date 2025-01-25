@@ -94,7 +94,6 @@ class ApiServiceTest {
         val response = apiService.getBrochures()
 
         // Assert
-        println("Parsed response: ${response.embedded.contents}")
         assertNotNull(response.embedded)
         assertEquals(2, response.embedded.contents.size)
         assertEquals("brochure", response.embedded.contents[0].contentType)

@@ -26,8 +26,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = "17"
+    }
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
     }
 }
 
@@ -39,6 +46,18 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.core.ktx)
     kapt(libs.hilt.compiler)
+
+    // Test dependencies
+    testImplementation(libs.mockk)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.androidx.test.core)
+
+    // Android test dependencies
+    androidTestImplementation(libs.mockk)
+    androidTestImplementation(libs.coroutines.test)
+    androidTestImplementation(libs.turbine)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

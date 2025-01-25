@@ -1,6 +1,7 @@
 package com.android.brochurecatalogue.brochureslist
 
 import android.content.res.Configuration
+import androidx.annotation.OpenForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.data.model.domain.Brochure
@@ -28,7 +29,8 @@ class BrochureViewModel @Inject constructor(
         loadBrochures()
     }
 
-    private fun loadBrochures(filter: BrochureFilter = BrochureFilter()) {
+    @OpenForTesting
+    fun loadBrochures(filter: BrochureFilter = BrochureFilter()) {
         viewModelScope.launch {
 
             getBrochuresUseCase.execute(GetBrochuresUseCase.Param(filter)).collect { result ->
@@ -50,7 +52,7 @@ class BrochureViewModel @Inject constructor(
                     }
 
                     is Result.Failure -> {
-                        _uiState.update { it.copy(isLoading = false, errorMessage = result.exception.message) }
+                        _uiState.update { it.copy(isLoading = false, errorMessage = result.exception.message ?: "Unknown error occurred") }
                     }
                 }
             }

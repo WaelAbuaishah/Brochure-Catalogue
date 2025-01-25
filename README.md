@@ -72,6 +72,3 @@ Enjoy! 🎉
 | ![Light With Filter](https://firebasestorage.googleapis.com/v0/b/sawadevelopmentandaid.appspot.com/o/light%20with%20filter.png?alt=media&token=cd43ce28-82ca-41b7-82d3-25691778fed9) | ![Light Without Filter](https://firebasestorage.googleapis.com/v0/b/sawadevelopmentandaid.appspot.com/o/light_without_filter.png?alt=media&token=c0bba109-296d-4d8d-b2ad-85a7790c6173) |
 
 ---
-
-Happy coding! 🚀
-~~~~
