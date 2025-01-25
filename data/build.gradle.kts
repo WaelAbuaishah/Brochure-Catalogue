@@ -59,6 +59,20 @@ dependencies {
     implementation(libs.moshi.kotlin)
     implementation(libs.retrofit.moshi.converter)
 
+    // Test dependencies
+    testImplementation(libs.mockk)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.androidx.test.core)
+
+    // Android test dependencies
+    androidTestImplementation(libs.mockk)
+    androidTestImplementation(libs.coroutines.test)
+    androidTestImplementation(libs.turbine)
+    testImplementation(libs.room.testing)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.mockwebserver)
+
     testImplementation(libs.junit)
 
 }

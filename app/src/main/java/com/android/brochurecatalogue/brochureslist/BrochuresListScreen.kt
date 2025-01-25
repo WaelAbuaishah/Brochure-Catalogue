@@ -62,13 +62,13 @@ fun BrochureGrid(brochures: List<Brochure>, isRemoteLoading: Boolean, numberOfCe
         modifier = Modifier.fillMaxSize()
     ) {
         if (isRemoteLoading) {
-
             item(span = { GridItemSpan(numberOfCells) }) {
                 LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
             }
         }
         items(
             items = brochures,
+            key = { it.id },
             span = { brochure ->
                 if (brochure is Brochure.PremiumBrochure) {
                     GridItemSpan(numberOfCells)

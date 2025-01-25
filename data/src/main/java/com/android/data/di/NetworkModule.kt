@@ -1,14 +1,11 @@
 package com.android.data.di
 
-//import com.android.data.model.remote.BrochureBase
 import com.android.data.model.remote.RemotePlacement
 import com.android.data.model.remote.UnParsableRemotePlacement
 import com.android.data.network.ApiService
 import com.android.data.utils.Constants.BASE_URL
 import com.android.data.utils.DefaultOnMalformedDataAdapter
-//import com.android.data.utils.SkipBadElementsListAdapter
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +15,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import javax.inject.Singleton
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import dagger.multibindings.IntoSet
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
