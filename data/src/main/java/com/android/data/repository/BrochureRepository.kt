@@ -7,5 +7,4 @@ import kotlinx.coroutines.flow.Flow
 interface BrochureRepository {
 
     fun fetchBrochures(): Flow<Result<List<Brochure>>>
-
 }

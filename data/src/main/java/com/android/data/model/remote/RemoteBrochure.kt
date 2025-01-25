@@ -1,27 +1,42 @@
 package com.android.data.model.remote
 
+import androidx.annotation.Keep
 import com.android.data.utils.Constants.EMBEDDED
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-data class RemoteBrochure(
-    val id: String,
-    val title: String?,
-    val contentType: String?,
-    val brochureImage: String?,
-    val publisher: RemotePublisher?,
-    val distance: Double?
-)
-
-data class RemotePublisher(
-    val id: String?,
-    val name: String?,
-    val type: String?
-)
-
+@JsonClass(generateAdapter = true)
 data class BrochureApiResponse(
-    @SerializedName(EMBEDDED) val embedded: EmbeddedBrochures
+    @Json(name = EMBEDDED) val embedded: EmbeddedBrochures
 )
 
+@JsonClass(generateAdapter = true)
 data class EmbeddedBrochures(
-    val contents: List<RemoteBrochure>
+    val contents: List<RemotePlacement>
 )
+
+@Keep
+@JsonClass(generateAdapter = true)
+data class RemotePlacement(
+    val contentType: String?,
+    val content: RemoteBrochure?
+)
+
+@JsonClass(generateAdapter = true)
+data class RemoteBrochure(
+    val id: Long,
+    val brochureImage: String?,
+    val publisher: Publisher,
+    val contentType: String?,
+    val distance: Double
+)
+
+@JsonClass(generateAdapter = true)
+data class Publisher(
+    val id: String,
+    val name: String?,
+)
+
+object UnParsableRemotePlacement {
+    val default = RemotePlacement(contentType = "unknown", content = null)
+}

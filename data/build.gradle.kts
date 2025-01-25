@@ -45,13 +45,19 @@ dependencies {
 
     // Retrofit
     implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
     implementation(libs.okhttp.logging.interceptor)
 
     // Room
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     implementation(libs.room.ktx)
+
+    // Moshi
+    implementation(libs.moshi.core)
+    ksp(libs.moshi.kotlin.codegen)
+    implementation(libs.moshi.adapters)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.retrofit.moshi.converter)
 
     testImplementation(libs.junit)
 

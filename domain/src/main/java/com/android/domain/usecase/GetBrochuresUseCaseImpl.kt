@@ -1,6 +1,7 @@
 package com.android.domain.usecase
 
 import com.android.data.model.domain.Brochure
+import com.android.data.model.domain.copyWith
 import com.android.data.repository.BrochureRepository
 import com.android.data.utils.Result
 import com.android.domain.utils.Constants.DEFAULT_PLACE_HOLDER
@@ -20,9 +21,8 @@ class GetBrochuresUseCaseImpl @Inject constructor(
                         .filter { brochure ->
                             !param.filter.enableProximityFilter ||
                                 (brochure.distance != null && brochure.distance!! <= param.filter.maxDistance)
-                        }
-                        .map { brochure ->
-                            brochure.copy(brochureImage = brochure.brochureImage ?: DEFAULT_PLACE_HOLDER)
+                        }.map { brochure ->
+                            brochure.copyWith(brochureImage = brochure.brochureImage ?: DEFAULT_PLACE_HOLDER)
                         }
                     Result.Success(filteredBrochures, result.source)
                 }

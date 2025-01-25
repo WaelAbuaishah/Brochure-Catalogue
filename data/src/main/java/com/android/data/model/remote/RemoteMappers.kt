@@ -1,47 +1,42 @@
 package com.android.data.model.remote
 
 import com.android.data.model.domain.Brochure
-import com.android.data.model.domain.ContentType
 import com.android.data.model.domain.Publisher
 import com.android.data.model.local.LocalBrochure
-import com.android.data.utils.Constants.UNKNOWN_BROCHURE_TYPE
+import com.android.data.utils.Constants
+import com.android.data.utils.Constants.BROCHURE_TYPE
 
-fun RemoteBrochure.toDomain(): Brochure? {
-    val type = when (contentType) {
-        "brochure" -> ContentType.BROCHURE
-        "brochurePremium" -> ContentType.BROCHURE_PREMIUM
-        else -> ContentType.OTHER
-    }
+typealias RemotePublisher = com.android.data.model.remote.Publisher
 
-    return if (type != ContentType.OTHER) {
-        Brochure(
-            id = id,
-            title = title,
-            contentType = type,
+fun RemoteBrochure.toDomain() =
+    if (this.contentType.equals(Constants.BROCHURE_PREMIUM_TYPE, ignoreCase = true)) {
+        Brochure.PremiumBrochure(
+            id = id.toString(),
             brochureImage = brochureImage,
-            publisher = publisher?.toDomain() ?: return null,
+            publisher = publisher.toDomain(),
             distance = distance
         )
-    } else null
-}
+    } else {
+        Brochure.StandardBrochure(
+            id = id.toString(),
+            brochureImage = brochureImage,
+            publisher = publisher.toDomain(),
+            distance = distance
+        )
+    }
 
-fun RemotePublisher.toDomain(): Publisher {
-    return Publisher(
-        id = id.orEmpty(),
-        name = name,
-        type = type
-    )
-}
-
-fun RemoteBrochure.toLocal(): LocalBrochure {
-    return LocalBrochure(
+fun RemotePublisher.toDomain() =
+    Publisher(
         id = id,
-        title = title,
-        contentType = contentType ?: UNKNOWN_BROCHURE_TYPE,
+        name = name
+    )
+
+fun RemoteBrochure.toLocal() =
+    LocalBrochure(
+        id = id.toString(),
+        contentType = this.contentType ?: BROCHURE_TYPE,
         brochureImage = brochureImage,
-        publisherId = publisher?.id.orEmpty(),
-        publisherName = publisher?.name,
-        publisherType = publisher?.type,
+        publisherId = publisher.id,
+        publisherName = publisher.name,
         distance = distance
     )
-}

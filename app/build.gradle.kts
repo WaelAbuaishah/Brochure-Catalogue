@@ -41,11 +41,16 @@ android {
 dependencies {
     // TODO: Replace the module name with a constant source
     implementation(project(":domain"))
+    implementation(project(":data"))
 
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.core.ktx)
     kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation)
+
+    // coil
+    implementation(libs.io.coil)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -1,13 +1,12 @@
 package com.android.data.repository
 
+//import com.android.data.model.remote.BrochureBase
 import com.android.data.local.BrochureDao
 import com.android.data.model.domain.Brochure
 import com.android.data.model.local.toDomain
 import com.android.data.model.remote.toDomain
 import com.android.data.model.remote.toLocal
 import com.android.data.network.ApiService
-import com.android.data.utils.Constants.BROCHURE_PREMIUM_TYPE
-import com.android.data.utils.Constants.BROCHURE_TYPE
 import com.android.data.utils.Result.Failure
 import com.android.data.utils.Result.Loading
 import com.android.data.utils.Result.Success
@@ -29,12 +28,11 @@ class BrochureRepositoryImpl @Inject constructor(
 
         emit(Loading(Source.REMOTE))
         try {
-            val remoteBrochures = apiService.getBrochures().embedded.contents
-                .filter { it.contentType == BROCHURE_TYPE || it.contentType == BROCHURE_PREMIUM_TYPE }
+            val remoteBrochures = apiService.getBrochures().embedded.contents.map { it.content?.copy(contentType = it.contentType) }
 
-            emit(Success(remoteBrochures.mapNotNull { it.toDomain() }, Source.REMOTE))
+            emit(Success(remoteBrochures.mapNotNull { it?.toDomain() }, Source.REMOTE))
 
-            val localEntities = remoteBrochures.map { it.toLocal() }
+            val localEntities = remoteBrochures.mapNotNull { it?.toLocal() }
             brochureDao.insertBrochures(localEntities)
 
         } catch (e: Exception) {

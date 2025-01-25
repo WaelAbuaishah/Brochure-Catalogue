@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.android.data.model.local.LocalBrochure
 
-@Database(entities = [LocalBrochure::class], version = 1, exportSchema = false)
+@Database(entities = [LocalBrochure::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     /**
